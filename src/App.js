@@ -23,6 +23,8 @@ function App() {
   const [mapZoom, setmapZoom] = useState(3);
   const [mapCountries, setmapCountries] = useState([]);
   const [casesType, setcasesType] = useState("cases");
+  const [recoveryRate, setrecoveryRate] = useState(0);
+  const [deathRate, setdeathRate] = useState(0);
   // State = How to write a variable in react
 
   // https://disease.sh/v3/covid-19/countries
@@ -33,6 +35,10 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setcountryInfo(data);
+        const recov = ((data.recovered / data.cases) * 100).toFixed(2);
+        setrecoveryRate(recov);
+        const death = ((data.deaths / data.cases) * 100).toFixed(2);
+        setdeathRate(death)
       });
   }, []);
   useEffect(() => {
@@ -44,11 +50,10 @@ function App() {
       await fetch("https://disease.sh/v3/covid-19/countries")
         .then((response) => response.json())
         .then((data) => {
-          
           const countries = data.map((country) => ({
             name: country.country, // United State
             value: country.countryInfo.iso2,
-            label: country.country // UK,USA,FR
+            label: country.country, // UK,USA,FR
           }));
           const sortedData = sortData(data);
           settableData(sortedData);
@@ -73,7 +78,10 @@ function App() {
       .then((data) => {
         setcountry(countryCode);
         setcountryInfo(data);
-
+        const recov = ((data.recovered / data.cases) * 100).toFixed(2);
+        setrecoveryRate(recov);
+        const death = ((data.deaths / data.cases) * 100).toFixed(2);
+        setdeathRate(death)
         countryCode === "worldwide"
           ? setmapCenter({ lat: 34.80746, lng: -40.4796 })
           : setmapCenter([data.countryInfo.lat, data.countryInfo.long]);
@@ -124,6 +132,25 @@ function App() {
             cases={prettyPrintState(countryInfo.todayDeaths)}
             total={prettyPrintState(countryInfo.deaths)}
           />
+        </div>
+        <div className="row text-center p-0">
+          <div className="card col p-1">
+            <div className="text-success">
+              <span className="rc">{recoveryRate}%</span>
+              <br></br>
+              <span>Recovery Rate</span>
+            </div>
+          </div>
+          <div className="card col p-1">
+            <div className="text-danger">
+              <span className="dc">
+                {deathRate}%
+               
+              </span>
+              <br></br>
+              <span>Mortality Rate</span>
+            </div>
+          </div>
         </div>
         <Map
           casesType={casesType}

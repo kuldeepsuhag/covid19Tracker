@@ -12,27 +12,26 @@ body {
 .app__left {
   flex: 0.9;
 }
-.app__dropdown{
+.app__dropdown {
   background-color: white;
 }
-.app__right{
+.app__right {
   display: flex;
   flex-direction: column;
-
 }
-.app__right .MuiCardContent-root{
+.app__right .MuiCardContent-root {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
-.app__graph{
+.app__graph {
   flex-grow: 1;
 }
-.app__header >h1{
-  color:#fc3c3c;
+.app__header > h1 {
+  color: #fc3c3c;
   font-size: 2rem;
 }
-.app__header  {
+.app__header {
   display: flex; /*Pushes everything into a row display flex flex box is way to put div into a row and column*/
   justify-content: space-between; /* It will give space between the child */
   align-items: center;
@@ -47,7 +46,57 @@ body {
     flex-direction: column;
   }
 }
-.app__graphTitle{
+.app__graphTitle {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+.row {
+  
+  display: flex;
+  margin-top: 10px;
+}
+.text-center {
+  text-align: center !important;
+}
+.p-0 {
+  padding: 0 !important;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+}
+.p-1 {
+  padding: 0.25rem !important;
+}
+.text-success {
+  color: #28a745 !important;
+}
+.rc {
+  font-size: 18px;
+  font-weight: 700;
+  color: green;
+}
+.rcc {
+  font-size: 12px;
+  color: green;
+  top: -1em;
+}
+.text-danger {
+  color: #dc3545 !important;
+}
+.dc {
+  font-size: 18px;
+  font-weight: 700;
+  color: grey;
 }
